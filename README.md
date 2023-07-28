@@ -23,6 +23,12 @@ git clone https://github.com/timilehin2000/tobams-task.git
 cd tobams-task
 ```
 
+-   Install packages
+
+```bash
+npm i
+```
+
 -   Initiate `.env` file
 
 ```bash
