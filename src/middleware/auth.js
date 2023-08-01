@@ -8,7 +8,6 @@ const loginRequired = async (req, res, next) => {
 
         try {
             const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(verifiedUser)
 
             if (!verifiedUser) {
                 return sendErrorResponse(
@@ -20,12 +19,15 @@ const loginRequired = async (req, res, next) => {
             }
 
             const user = await User.findOne({
-                userName: verifiedUser.userName,
+                _id: verifiedUser.userId,
             });
 
             if (!user) return sendErrorResponse(res, "No user found", {}, 404);
 
-            req.user = user;
+            req.user = {
+                _id: user._id,
+                userName: user.userNames
+            };
 
             next();
         } catch (err) {
