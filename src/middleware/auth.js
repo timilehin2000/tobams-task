@@ -19,7 +19,7 @@ const loginRequired = async (req, res, next) => {
             }
 
             const user = await User.findOne({
-                userNaame: verifiedUser.userName,
+                userName: verifiedUser.userName,
             });
 
             if (!user) return sendErrorResponse(res, "No user found", {}, 404);
